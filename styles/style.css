@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  font-family: "Montserrat", sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  background-color: rgb(47, 47, 47);
+  overflow: hidden;
+}
+
+.left-section {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  background-color: blueviolet;
+  display: flex;
+  justify-content: center;
+  padding: 100px 10px;
+}
+
+.clear-history-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+}
+
+.history {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  color: white;
+  font-size: 24px;
+  overflow-y: scroll;
+}
+
+.right-section {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.display-container {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.display {
+  width: 80%;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 30px;
+  overflow-x: scroll;
+}
+
+.display-result {
+  width: 20%;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.grid-btn {
+  width: 100%;
+  height: 50%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 24px;
+}
+
+@media screen and (width < 900px) {
+  .burger-seven {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    width: 50px;
+    height: 0;
+    cursor: pointer;
+    padding: 25px 0;
+  }
+  .burger-seven::before {
+    position: absolute;
+    right: 0;
+    content: "";
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+    opacity: 1;
+    translate: 0 -7.5px;
+    transition: all 0.3s 0.3s;
+  }
+  .burger-seven__center-line1 {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #fff;
+    rotate: 45deg;
+    translate: -25px -25px;
+    opacity: 0;
+    transition: translate 0.3s, opacity 0.3s;
+  }
+  .burger-seven__center-line2 {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background-color: #fff;
+    rotate: -45deg;
+    translate: 25px -25px;
+    opacity: 0;
+    transition: translate 0.3s, opacity 0.3s;
+  }
+  .burger-seven::after {
+    position: absolute;
+    left: 0;
+    content: "";
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+    opacity: 1;
+    translate: 0 7.5px;
+    transition: all 0.3s 0.3s;
+  }
+  .burger-seven--active::before {
+    right: 25px;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .burger-seven__center-line1--active {
+    translate: 0 0;
+    opacity: 1;
+    transition: translate 0.3s 0.3s, opacity 0.3s 0.3s;
+  }
+  .burger-seven__center-line2--active {
+    translate: 0 0;
+    opacity: 1;
+    transition: translate 0.3s 0.3s, opacity 0.3s 0.3s;
+  }
+  .burger-seven--active::after {
+    left: 25px;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .left-section {
+    position: fixed;
+    top: 0;
+    left: -75%;
+    bottom: 0;
+    width: 75%;
+    background-color: blueviolet;
+    transition: left 0.5s ease;
+  }
+  .left-section--active {
+    left: 0;
+  }
+  .right-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=style.css.map */
