@@ -5,45 +5,49 @@
     <meta charset="UTF-8">
     <meta name="author" content="Stepan Dordiai">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator v1.0.0</title>
+    <title>Calculator</title>
+    <link rel="icon" type="image/x-icon" href="./favicons/calculator-favicon-1-v1.0.0.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicons/calculator-favicon-2-v1.0.0.png">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <div onclick="toggleBurgerSeven()" class="burger-seven">
-        <span class="burger-seven__center-line1"></span>
-        <span class="burger-seven__center-line2"></span>
+    <div class="burger-12 js-burger">
+        <span class="burger-12__center-line"></span>
     </div>
     <div class="left-section">
-        <button onclick="clearCalcHistory()" class="clear-history-btn">Clear</button>
-        <div class="history"></div>
+        <div class="left-section-header">
+            <button class="clear-history-btn js-clear-history-btn">Clear</button>
+        </div>
+        <p class="history-title">History</p>
+        <div class="history-container js-history-container"></div>
     </div>
     <div class="right-section">
         <div class="display-container">
+            <p class="expression"></p>
             <p class="display"></p>
-            <p class="display-result"></p>
         </div>
-        <div class="grid-btn">
-            <button onclick="addToDisplay('&#40;')">&#40;</button>
-            <button onclick="addToDisplay('&#41;')">&#41;</button>
-            <button onclick="addToDisplay('%')">%</button>
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="addToDisplay(7)">7</button>
-            <button onclick="addToDisplay(8)">8</button>
-            <button onclick="addToDisplay(9)">9</button>
-            <button onclick="addToDisplay('/')">&divide;</button>
-            <button onclick="addToDisplay(4)">4</button>
-            <button onclick="addToDisplay(5)">5</button>
-            <button onclick="addToDisplay(6)">6</button>
-            <button onclick="addToDisplay('*')">&times;</button>
-            <button onclick="addToDisplay(1)">1</button>
-            <button onclick="addToDisplay(2)">2</button>
-            <button onclick="addToDisplay(3)">3</button>
-            <button onclick="addToDisplay('-')">-</button>
-            <button onclick="addToDisplay(0)">0</button>
-            <button onclick="addToDisplay('&period;')">&period;</button>
-            <button onclick="calculate()">&equals;</button>
-            <button onclick="addToDisplay('&plus;')">&plus;</button>
+        <div class="grid-btn-container">
+            <button class="operator-btn js-display-btn">&#40;</button>
+            <button class="operator-btn js-display-btn">&#41;</button>
+            <button class="operator-btn js-display-btn">%</button>
+            <button class="operator-btn js-display-btn">/</button>
+            <button class="js-display-btn">7</button>
+            <button class="js-display-btn">8</button>
+            <button class="js-display-btn">9</button>
+            <button class="operator-btn js-display-btn">*</button>
+            <button class="js-display-btn">4</button>
+            <button class="js-display-btn">5</button>
+            <button class="js-display-btn">6</button>
+            <button class="operator-btn js-display-btn">-</button>
+            <button class="js-display-btn">1</button>
+            <button class="js-display-btn">2</button>
+            <button class="js-display-btn">3</button>
+            <button class="operator-btn js-display-btn">&plus;</button>
+            <button class="js-display-btn">0</button>
+            <button class="js-display-btn">&period;</button>
+            <button class="js-clear-btn">C</button>
+            <button class="operator-btn js-calculate-btn">&equals;</button>
         </div>
     </div>
     <script src="app.js"></script>

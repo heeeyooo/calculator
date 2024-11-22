@@ -1,59 +1,110 @@
 const display = document.querySelector(".display");
-const displayResult = document.querySelector(".display-result");
+const expression = document.querySelector(".expression");
+
+const calculationHistory =
+    JSON.parse(localStorage.getItem("calculation")) || [];
+
+// FIXME: touchstart?
+addEventListener("touchstart", function () {}, true);
+
+// When true u can't make calculation again to prevent save same expression history
+let isCalculated = false;
 
 function addToDisplay(param) {
     display.textContent += param;
+    expression.innerHTML = "";
+    isCalculated = false;
 }
 
-let calculation = JSON.parse(localStorage.getItem("calculation")) || [];
+document.querySelectorAll(".js-display-btn").forEach((btn) => {
+    const btnValue = btn.innerHTML;
+    btn.addEventListener("click", () => {
+        addToDisplay(btnValue);
+    });
+});
+
+function clearDisplay() {
+    display.textContent = "";
+    expression.textContent = "";
+}
+
+document.querySelector(".js-clear-btn").addEventListener("click", () => {
+    clearDisplay();
+});
+
+function calculate() {
+    if (
+        (!isCalculated && display.innerHTML.includes("*")) ||
+        display.innerHTML.includes("-") ||
+        display.innerHTML.includes("+") ||
+        display.innerHTML.includes("/")
+    ) {
+        try {
+            expression.textContent = display.innerHTML;
+            display.textContent = eval(display.textContent);
+            calculationHistory.push({
+                calc: expression.textContent,
+                result: display.textContent,
+            });
+            localStorage.setItem(
+                "calculation",
+                JSON.stringify(calculationHistory)
+            );
+            isCalculated = true;
+        } catch (error) {
+            display.textContent = "Error";
+        } finally {
+            refreshCalculation();
+        }
+    } else {
+        return;
+    }
+}
+
+document.querySelector(".js-calculate-btn").addEventListener("click", () => {
+    calculate();
+});
 
 function refreshCalculation() {
     let calculationHTML = "";
-    calculation.forEach((item) => {
+    calculationHistory.forEach((item) => {
         calculationHTML += `<p>${item.calc}=${item.result}</p>`;
     });
-
-    document.querySelector(".history").innerHTML = calculationHTML;
+    document.querySelector(".js-history-container").innerHTML = calculationHTML;
 }
 
 refreshCalculation();
 
-function calculate() {
-    try {
-        displayResult.textContent = eval(display.textContent);
-    } catch (error) {
-        displayResult.textContent = "Error";
-    } finally {
-        calculation.push({
-            calc: display.textContent,
-            result: displayResult.textContent,
-        });
-        localStorage.setItem("calculation", JSON.stringify(calculation));
-        refreshCalculation();
-    }
+function clearCalcHistory() {
+    localStorage.removeItem("calculation");
+    document.querySelector(".js-history-container").innerHTML = "";
 }
 
-function clearDisplay() {
-    display.textContent = "";
-    displayResult.textContent = "";
+document
+    .querySelector(".js-clear-history-btn")
+    .addEventListener("click", () => {
+        clearCalcHistory();
+    });
+
+function toggleBurger12() {
+    document.querySelector(".burger-12").classList.toggle("burger-12--active");
+    document
+        .querySelector(".burger-12__center-line")
+        .classList.toggle("burger-12__center-line--active");
 }
 
-function toggleBurgerSeven() {
-    document
-        .querySelector(".burger-seven")
-        .classList.toggle("burger-seven--active");
-    document
-        .querySelector(".burger-seven__center-line1")
-        .classList.toggle("burger-seven__center-line1--active");
-    document
-        .querySelector(".burger-seven__center-line2")
-        .classList.toggle("burger-seven__center-line2--active");
+document.querySelector(".js-burger").addEventListener("click", () => {
+    toggleBurger12();
     document
         .querySelector(".left-section")
         .classList.toggle("left-section--active");
-}
+});
 
-function clearCalcHistory() {
-    localStorage.removeItem("calculation");
-    document.querySelector(".history").innerHTML = "";
-}
+// Play sound effect on click
+document.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        // Better/faster way then get audio from HTML audio tag
+        const sound = new Audio("./sounds/tidid.mp3");
+        sound.play();
+    });
+});
